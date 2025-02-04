@@ -1,0 +1,48 @@
+{
+  "username": "john_doe",
+  "salary": 5000,
+  "monthly_expenditures": [
+    {
+      "month": "January",
+      "year": 2025,
+      "expenses": [
+        { "date": "2025-01-01", "category": "Food", "amount": 15, "paymentMethod": "Card", "notes": "Lunch" },
+        { "date": "2025-01-02", "category": "Transport", "amount": 5, "paymentMethod": "Cash", "notes": "Bus fare" },
+        { "date": "2025-01-03", "category": "Entertainment", "amount": 20, "paymentMethod": "Card", "notes": "Movie" },
+        { "date": "2025-01-04", "category": "Groceries", "amount": 50, "paymentMethod": "Card", "notes": "Weekly shopping" },
+        { "date": "2025-01-05", "category": "Utilities", "amount": 100, "paymentMethod": "Online", "notes": "Electricity bill" },
+        { "date": "2025-01-06", "category": "Health", "amount": 30, "paymentMethod": "Card", "notes": "Pharmacy" },
+        { "date": "2025-01-07", "category": "Food", "amount": 12, "paymentMethod": "Cash", "notes": "Dinner" },
+        { "date": "2025-01-08", "category": "Transport", "amount": 8, "paymentMethod": "Card", "notes": "Taxi" },
+        { "date": "2025-01-09", "category": "Subscriptions", "amount": 15, "paymentMethod": "Online", "notes": "Streaming service" },
+        { "date": "2025-01-10", "category": "Miscellaneous", "amount": 25, "paymentMethod": "Cash", "notes": "Gift" },
+        { "date": "2025-01-11", "category": "Food", "amount": 10, "paymentMethod": "Card", "notes": "Breakfast" },
+        { "date": "2025-01-12", "category": "Transport", "amount": 12, "paymentMethod": "Cash", "notes": "Metro pass" },
+        { "date": "2025-01-13", "category": "Entertainment", "amount": 30, "paymentMethod": "Card", "notes": "Concert ticket" },
+        { "date": "2025-01-14", "category": "Groceries", "amount": 60, "paymentMethod": "Card", "notes": "Monthly bulk shopping" },
+        { "date": "2025-01-15", "category": "Utilities", "amount": 120, "paymentMethod": "Online", "notes": "Water bill" },
+        { "date": "2025-01-16", "category": "Health", "amount": 40, "paymentMethod": "Card", "notes": "Doctor visit" },
+        { "date": "2025-01-17", "category": "Food", "amount": 14, "paymentMethod": "Cash", "notes": "Dinner with friends" },
+        { "date": "2025-01-18", "category": "Transport", "amount": 6, "paymentMethod": "Card", "notes": "Bus fare" },
+        { "date": "2025-01-19", "category": "Subscriptions", "amount": 20, "paymentMethod": "Online", "notes": "Music streaming" },
+        { "date": "2025-01-20", "category": "Miscellaneous", "amount": 35, "paymentMethod": "Cash", "notes": "Book purchase" }
+      ]
+    },
+    {
+      "month": "February",
+      "year": 2025,
+      "expenses": [
+        { "date": "2025-02-01", "category": "Food", "amount": 18, "paymentMethod": "Card", "notes": "Breakfast" },
+        { "date": "2025-02-02", "category": "Transport", "amount": 10, "paymentMethod": "Cash", "notes": "Train ticket" },
+        { "date": "2025-02-03", "category": "Entertainment", "amount": 25, "paymentMethod": "Card", "notes": "Concert ticket" },
+        { "date": "2025-02-04", "category": "Groceries", "amount": 55, "paymentMethod": "Card", "notes": "Weekly groceries" },
+        { "date": "2025-02-05", "category": "Utilities", "amount": 95, "paymentMethod": "Online", "notes": "Water bill" },
+        { "date": "2025-02-06", "category": "Health", "amount": 40, "paymentMethod": "Card", "notes": "Doctor visit" },
+        { "date": "2025-02-07", "category": "Food", "amount": 14, "paymentMethod": "Cash", "notes": "Lunch" },
+        { "date": "2025-02-08", "category": "Transport", "amount": 7, "paymentMethod": "Card", "notes": "Bus fare" },
+        { "date": "2025-02-09", "category": "Subscriptions", "amount": 20, "paymentMethod": "Online", "notes": "Music streaming" },
+        { "date": "2025-02-10", "category": "Miscellaneous", "amount": 30, "paymentMethod": "Cash", "notes": "Gift for friend" }
+      ]
+    }
+  ]
+}
