@@ -6,7 +6,13 @@ const ExpenditureAnalysis = () => {
   const [expenditures, setExpenditures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const defaultBills = [
+    "Electricity bill",
+    "Mobile charge",
+    "Water bill",
+    "Internet bill",
+    "Gas bill"
+  ];
   useEffect(() => {
     fetch('http://localhost:5000/api/expenditures')  // Fetching from backend
       .then(response => {
@@ -41,6 +47,9 @@ const ExpenditureAnalysis = () => {
   const dailyTotals = dates.map(date => (
     userExpenditures.filter(e => e.date === date).reduce((sum, e) => sum + e.amount, 0)
   ));
+
+  // Filter expenditures with a note containing 'bill'
+  const billNotes = userExpenditures.filter(expense => expense.note && expense.note.toLowerCase().includes('bill'));
 
   return (
     <div className="p-6">
@@ -80,6 +89,27 @@ const ExpenditureAnalysis = () => {
             backgroundColor: '#F472B6'
           }]
         }} />
+      </div>
+
+      {/* TODO List for notes with 'bill' in them */}
+      <div>
+        <h3>TODO List: </h3>
+        {billNotes.length > 0 ? (
+          <ul>
+            {billNotes.map((expense, index) => (
+              <li key={index}>{expense.note}</li>
+            ))}
+          </ul>
+        ) : (
+          <div>
+            
+            <ul>
+              {defaultBills.map((bill, index) => (
+                <li key={index}>{bill}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
