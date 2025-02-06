@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "../components/Button";
+import "./FinancialAdvice.css";
 
 const FinancialAdvice = () => {
   const location = useLocation();
-  const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
+  const [question, setQuestion] = useState("");
+  const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
   const stockData = location.state?.stockData || {}; // Receive stock data from previous page
 
   const handleAdviceRequest = async () => {
     if (!question.trim()) return;
-    
+
     setLoading(true);
-    setResponse('');
+    setResponse("");
 
     try {
       const res = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
           messages: [
-            { role: "system", content: "You are a financial advisor, acting as a personal chartered accountant (CA). Your goal is to provide accurate, reliable, and insightful financial advice to help users make informed decisions about their finances." },
-            { role: "user", content: `User's financial data: Company: ${stockData.companyName}, Current Price: ${stockData.currentPrice}, Market Cap: ${stockData.marketCap}, P/E Ratio: ${stockData.peRatio}, Dividend Yield: ${stockData.dividendYield}.` },
-            { role: "user", content: question }
+            {
+              role: "system",
+              content:
+                "You are a financial advisor, acting as a personal chartered accountant (CA). Your goal is to provide accurate, reliable, and insightful financial advice to help users make informed decisions about their finances.",
+            },
+            {
+              role: "user",
+              content: `User's financial data: Company: ${stockData.companyName}, Current Price: ${stockData.currentPrice}, Market Cap: ${stockData.marketCap}, P/E Ratio: ${stockData.peRatio}, Dividend Yield: ${stockData.dividendYield}.`,
+            },
+            { role: "user", content: question },
           ],
         }),
       });
@@ -44,34 +52,46 @@ const FinancialAdvice = () => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
-      <h2 className="text-2xl font-semibold text-purple-700">💰 Financial Advice (AI-powered)</h2>
-      
-      <p>Here is the data for the selected company:</p>
-      <p>Company: {stockData.companyName}</p>
-      <p>Current Price: ${stockData.currentPrice}</p>
-      <p>Market Cap: ${stockData.marketCap}</p>
-      <p>P/E Ratio: {stockData.peRatio}</p>
-      <p>Dividend Yield: {stockData.dividendYield}%</p>
+    <div className="container mt-5">
+      <h2 className="text-center text-primary mb-4">
+        💰 Financial Advice (AI-powered)
+      </h2>
 
-      <textarea
-        className="w-full p-3 border rounded mt-4 text-gray-700"
-        placeholder="Ask your financial question..."
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        disabled={loading}
-      />
+      <div className="card mb-4">
+        <div className="card-body">
+          <h5 className="card-title">Company Information</h5>
+          <p className="card-text">Company: {stockData.companyName}</p>
+          <p className="card-text">Current Price: ${stockData.currentPrice}</p>
+          <p className="card-text">Market Cap: ${stockData.marketCap}</p>
+          <p className="card-text">P/E Ratio: {stockData.peRatio}</p>
+          <p className="card-text">
+            Dividend Yield: {stockData.dividendYield}%
+          </p>
+        </div>
+      </div>
+
+      <div className="mb-3">
+        <textarea
+          className="form-control"
+          placeholder="Ask your financial question..."
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          disabled={loading}
+        />
+      </div>
 
       <Button
-        className={`mt-3 px-4 py-2 rounded ${loading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"} text-white`}
+        className={`btn btn-primary ${loading ? "disabled" : ""}`}
         onClick={handleAdviceRequest}
         disabled={loading}
       >
         {loading ? "Processing..." : "Get Advice"}
       </Button>
 
-      <div className="mt-4 p-4 bg-gray-100 rounded min-h-[100px] border text-gray-800">
-        {loading ? "⏳ Fetching advice..." : response || "AI response will appear here."}
+      <div className="mt-4 p-4 bg-light border rounded">
+        {loading
+          ? "⏳ Fetching advice..."
+          : response || "AI response will appear here."}
       </div>
     </div>
   );
