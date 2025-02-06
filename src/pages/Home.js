@@ -1,31 +1,41 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '../components/Button';
+import './home.css';
 
 const Home = () => (
-  <div className="flex flex-col items-center p-6 space-y-4">
-    <h1 className="text-3xl font-bold text-purple-700">Micro-Investment App</h1>
-    <Link to="/financial-advice">
-      <Button className="bg-purple-500 text-white hover:bg-purple-600 transition">
-        Financial Advice (AI)
-      </Button>
-    </Link>
-    <Link to="/investment-options">
-      <Button className="bg-lilac-500 text-white hover:bg-lilac-600 transition">
-        Micro-Investment Options
-      </Button>
-    </Link>
-    <Link to="/expenditure-analysis">
-      <Button className="bg-lilac-500 text-white hover:bg-lilac-600 transition">
-        data-visualisation
-      </Button>
-    </Link>
-    <Link to="/stock">
-      <Button className="bg-lilac-500 text-white hover:bg-lilac-600 transition">
-        stock-analysis
-      </Button>
-    </Link>
+<>
+<body>
+
+<h1 className=" texth1 fw-bold text-center">Micro-Investment App</h1>
+
+<a className='link' href='./financial-advice'> 
+<div className="container">
+  <h1 className="text">Financial Advice (AI)</h1>
+</div>
+</a>
+
+
+<a className='link' href='./investment-options'>
+  <div className="container">
+    <h1 className="text">Micro Investment Options</h1>
   </div>
+</a>
+
+
+<a className='link' href='./expenditure-analysis'>
+  <div className="container">
+    <h1 className="text">Data Visualisation</h1>
+  </div>
+</a>
+
+
+<a className='link' href='./stock'>
+  <div className="container">
+    <h1 className="text">Stock Analysis</h1>
+  </div>
+</a>
+
+</body>
+</>
 );
 
 export default Home;

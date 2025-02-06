@@ -7,7 +7,8 @@ import InvestmentDetail from './pages/InvestmentDetail';
 import ExpenditureAnalysis from './pages/ExpenditureAnalysis';
 import Login from './pages/Login';
 import StockDetailPage from './pages/stock';
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => (
   <Router>
