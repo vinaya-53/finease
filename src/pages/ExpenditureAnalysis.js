@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
-import { expenditures } from '../data/expenditure'; // Data import
+import React, { useState, useEffect } from 'react';
 import { Bar, Pie, Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 const ExpenditureAnalysis = () => {
-  const [todos, setTodos] = useState([]);
+  const [expenditures, setExpenditures] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Flatten all expenses for a single user (assuming you're analyzing the first user, e.g., "john_doe")
-  const userExpenditures = expenditures[0].monthly_expenditures.flatMap(month => month.expenses);
+  useEffect(() => {
+    fetch('http://localhost:5000/api/expenditures')  // Fetching from backend
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setExpenditures(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="text-center text-lg">Loading...</p>;
+  if (error) return <p className="text-center text-lg text-red-500">Error: {error}</p>;
+  if (expenditures.length === 0) return <p className="text-center text-lg">No expenditure data available.</p>;
+
+  const userExpenditures = expenditures[0]?.monthly_expenditures?.flatMap(month => month.expenses) || [];
 
   const categoryData = userExpenditures.reduce((acc, curr) => {
     acc[curr.category] = (acc[curr.category] || 0) + curr.amount;
@@ -18,32 +41,6 @@ const ExpenditureAnalysis = () => {
   const dailyTotals = dates.map(date => (
     userExpenditures.filter(e => e.date === date).reduce((sum, e) => sum + e.amount, 0)
   ));
-
-  // Monthly expenses summary
-  const getMonthlyExpenses = (month, year) => {
-    return userExpenditures.filter(expense => {
-      const date = new Date(expense.date);
-      return date.getMonth() === month && date.getFullYear() === year;
-    });
-  };
-
-  // Monthly summary data (example: January 2025)
-  const monthlySummary = (month, year) => {
-    const monthlyExpenses = getMonthlyExpenses(month, year);
-    const totalMonthSpend = monthlyExpenses.reduce((sum, e) => sum + e.amount, 0);
-    const categoryMonthData = monthlyExpenses.reduce((acc, curr) => {
-      acc[curr.category] = (acc[curr.category] || 0) + curr.amount;
-      return acc;
-    }, {});
-    return { totalMonthSpend, categoryMonthData };
-  };
-
-  // Check for categories with the word 'bill' in the notes
-  const billCategories = userExpenditures.filter(e => e.notes && e.notes.toLowerCase().includes('bill'));
-  const reminderTodos = billCategories.map(bill => ({
-    task: `Pay the ${bill.category} bill (${bill.amount} ${bill.paymentMethod})`,
-    date: bill.date
-  }));
 
   return (
     <div className="p-6">
@@ -83,32 +80,6 @@ const ExpenditureAnalysis = () => {
             backgroundColor: '#F472B6'
           }]
         }} />
-      </div>
-
-      <div className="my-4">
-        <h3 className="text-xl font-semibold">Monthly Expenses (January 2025)</h3>
-        <div className="my-2">
-          <p><strong>Total Spend in January 2025:</strong> {monthlySummary(0, 2025).totalMonthSpend}</p>
-          <p><strong>Category Breakdown for January 2025:</strong></p>
-          <ul>
-            {Object.entries(monthlySummary(0, 2025).categoryMonthData).map(([category, amount]) => (
-              <li key={category}>{category}: {amount}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="my-4">
-        <h3 className="text-xl font-semibold">To-Do List: Bills</h3>
-        {reminderTodos.length > 0 ? (
-          <ul>
-            {reminderTodos.map((todo, index) => (
-              <li key={index} className="text-lg">{todo.task} (due: {todo.date})</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No bills due at the moment.</p>
-        )}
       </div>
     </div>
   );

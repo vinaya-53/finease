@@ -19,7 +19,7 @@ const expenditureSchema = new mongoose.Schema({
     monthly_expenditures: Array
 });
 
-const Expenditure = mongoose.model('Expenditure', expenditureSchema);
+const Expenditure = mongoose.model('Expenditure', expenditureSchema, 'finease');
 
 app.get('/api/expenditures', async (req, res) => {
     try {
@@ -32,9 +32,5 @@ app.get('/api/expenditures', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
-
-
 
 
