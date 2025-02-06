@@ -1,0 +1,22 @@
+
+.container{
+    display:flex;
+    flex-direction: column;
+    width:35rem !important;
+    margin:0 auto;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+    padding: 1rem;
+}
+
+
+
+.button{
+    color: rgb(12, 150, 235);
+    border: 0.1rem solid rgb(126, 147, 160) ;
+    border-radius: 1rem;
+    align-self: center;
+    background-color: rgb(239, 238, 238);
+}
