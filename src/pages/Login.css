@@ -7,7 +7,7 @@ body {
     font-weight: 600;
 }
 
-.container {
+.container{ 
     width: fit-content;
     max-width: 768px;
     display: flex;
@@ -45,6 +45,20 @@ body {
     color: #ffffff !important;
     background-color: #0071e3;
     border: none !important;
+  }
+
+  .c-l{
+    width: fit-content;
+    max-width: 768px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color:#fff;
+    margin: 8rem auto 0 auto;
+    border-radius: 2rem;
+    box-shadow: 2px 4px 12px #00000014 ;
   }
 
   
