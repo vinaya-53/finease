@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -16,29 +17,32 @@ const Login = () => {
   };
 
   return (
-    <div className="p-6 max-w-sm mx-auto">
-      <h2 className="text-2xl font-bold text-purple-700">Login</h2>
-      <input
+    <div className="container">
+      <h2 className="text-2xl font-bold text-purple-700">LOGIN</h2>
+      <form className='form'>
+        <div>
+        <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="w-full p-2 border rounded mt-4"
-      />
-      <input
+        className="form__input"
+      /> </div>
+      <div><input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="w-full p-2 border rounded mt-2"
-      />
-      <button
+        className="form__input"
+      /> </div>
+      <div><button
         onClick={handleLogin}
-        className="w-full mt-4 bg-purple-500 text-white py-2 rounded hover:bg-purple-600"
+        className="btn-l w-full mt-4 bg-purple-500 text-white py-2 rounded hover:bg-purple-600"
       >
-        Login
-      </button>
+        Submit
+      </button> </div>
       {error && <p className="text-red-500 mt-2">{error}</p>}
+      </form>
     </div>
   );
 };

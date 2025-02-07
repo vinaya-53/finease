@@ -51,12 +51,13 @@ const FinancialAdvice = () => {
     }
   };
 
-  return (
-    <div className="container mt-5">
-      <h2 className="text-center text-primary mb-4">
-        💰 Financial Advice (AI-powered)
+  return ( 
+    <div className="container-page-f">
+      <h2 className="h2-f">
+         Financial Advice (AI-powered)
       </h2>
-
+<div className="container-main-f">
+    <div className="container-flex-f">
       <div className="card mb-4">
         <div className="card-body">
           <h5 className="card-title">Company Information</h5>
@@ -69,8 +70,10 @@ const FinancialAdvice = () => {
           </p>
         </div>
       </div>
+      
 
-      <div className="mb-3">
+      <div >
+      <div className="textbox-f">
         <textarea
           className="form-control"
           placeholder="Ask your financial question..."
@@ -80,19 +83,25 @@ const FinancialAdvice = () => {
         />
       </div>
 
-      <Button
+      <div className="btn-f"><Button
         className={`btn btn-primary ${loading ? "disabled" : ""}`}
         onClick={handleAdviceRequest}
         disabled={loading}
       >
         {loading ? "Processing..." : "Get Advice"}
       </Button>
+      </div>
+      </div>
+      </div>
 
-      <div className="mt-4 p-4 bg-light border rounded">
+      <div className="ai">
+        <textarea className="ai mt-4 p-4 bg-light border rounded">
         {loading
           ? "⏳ Fetching advice..."
           : response || "AI response will appear here."}
+          </textarea>
       </div>
+    </div>
     </div>
   );
 };

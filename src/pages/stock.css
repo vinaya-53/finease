@@ -1,0 +1,32 @@
+.conts{
+    width: fit-content !important;
+    margin: 1.5rem auto !important;
+    flex-direction: column !important;
+}
+
+.h-100-s{
+  width: 30rem;
+  margin: 1rem;
+  height: 15rem;
+}
+
+.title-s{
+    justify-self: center;
+}
+
+.card-s{
+    justify-content: center !important;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.h-100-s2{
+    height: fit-content;
+    margin: 0 auto;
+}
+
+#dropdown-basic{
+    margin: 1rem;
+    margin-bottom: 0;
+}

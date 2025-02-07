@@ -8,16 +8,16 @@ const InvestmentOptions = () => {
   const options = [
     'Mutual Funds', 'ETFs', 'Bonds', 'Real Estate', 'Cryptocurrencies', 'Savings Plans'
   ];
-
+ 
   return (
     <body>
-    <div className='container'>
+    <div className='container-io'>
       {options.map((option, index) => (
-        <Card key={index}>
-          <CardContent>
-            <h3 className="text-center text-xl font-bold text-purple-600">{option}</h3>
+        <Card key={index} className='card-io'>
+          <CardContent >
+            <h3>{option}</h3>
             <Link to={`/investment-options/${option.toLowerCase().replace(/\s+/g, '-')}`}>
-              <Button className='button'>Learn More</Button>
+              <Button className='button-io'>Learn More</Button>
             </Link>
           </CardContent>
         </Card>

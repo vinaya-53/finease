@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import "./stock.css";
 
 ChartJS.register(
   LineElement,
@@ -136,9 +137,8 @@ const StockDetailPage = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="mb-4">
-        <Col>
+    <Container className="mt-5 conts">
+    
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               {companies.find((company) => company.symbol === companySymbol)
@@ -155,18 +155,14 @@ const StockDetailPage = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-        </Col>
-      </Row>
-
-      <Row className="mb-4">
-        <Col md={6}>
-          <Card className="h-100">
-            <Card.Body>
-              <Card.Title>Stock Details</Card.Title>
+        
+          <Card className="h-100-s">
+            <Card.Body className="card-s">
+              <Card.Title className="title-s">Stock Details</Card.Title>
               {loading ? (
                 <div>Loading...</div>
               ) : stockData ? (
-                <>
+                <> 
                   <h4>{stockData.companyName}</h4>
                   <p>Market Cap: ${stockData.marketCap}</p>
                   <p>P/E Ratio: {stockData.peRatio}</p>
@@ -177,11 +173,10 @@ const StockDetailPage = () => {
               )}
             </Card.Body>
           </Card>
-        </Col>
-        <Col md={6}>
-          <Card className="h-100">
-            <Card.Body>
-              <Card.Title>Stock Price Graph</Card.Title>
+        
+          <Card className="h-100-s">
+            <Card.Body className="card-s">
+              <Card.Title className="title-s">Stock Price Graph</Card.Title>
               {graphData ? (
                 <Line data={graphData} />
               ) : (
@@ -189,16 +184,16 @@ const StockDetailPage = () => {
               )}
             </Card.Body>
           </Card>
-        </Col>
-      </Row>
+        
+      
 
       <Row>
         <Col>
-          <Card className="h-100">
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title>Risk Assessment</Card.Title>
+          <Card className="h-100-s h-100-s2 ">
+            <Card.Body className="card-s">
+              <Card.Title className="title-s">Risk Assessment</Card.Title>
               <p>Risk Level: {riskLevel}</p>
-              <Button variant="info" onClick={handleLearnMoreClick}>
+              <Button className="btn-s" variant="info" onClick={handleLearnMoreClick}>
                 Learn More
               </Button>
             </Card.Body>
