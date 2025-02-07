@@ -3,6 +3,7 @@ import { expenditures } from "../data/expenditure"; // Data import
 import { Bar, Pie, Line } from "react-chartjs-2";
 import "chart.js/auto";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./ExpenditureAnalysis.css";
 
 const ExpenditureAnalysis = () => {
   const [todos, setTodos] = useState([]);
@@ -56,18 +57,18 @@ const ExpenditureAnalysis = () => {
   }));
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center text-primary mb-4">Expenditure Analysis</h2>
+    <div className="container">
+      <h2 className="h2-e">Expenditure Analysis</h2>
 
       <div className="row">
-        <div className="col-md-6 mb-4">
+        <div className="col-md-6 card-e">
           <div
-            className="card h-100"
+            className="card h-100 piee"
             style={{ maxWidth: "100%", margin: "auto" }}
           >
-            <div className="card-body">
-              <h3 className="card-title">Spending by Category</h3>
-              <Pie
+            <div className="card-body-e">
+              <h3 className="card-title-e">Spending by Category</h3>
+              <Pie className="pie-e"
                 data={{
                   labels: Object.keys(categoryData),
                   datasets: [
@@ -92,8 +93,8 @@ const ExpenditureAnalysis = () => {
 
         <div className="col-md-6 mb-4 d-flex flex-column">
           <div className="card flex-fill mb-4" style={{ maxWidth: "100%" }}>
-            <div className="card-body">
-              <h3 className="card-title">Daily Expenditure Trend</h3>
+            <div className="card-body-e">
+              <h3 className="card-title-e">Daily Expenditure Trend</h3>
               <Line
                 data={{
                   labels: dates,
@@ -111,8 +112,8 @@ const ExpenditureAnalysis = () => {
           </div>
 
           <div className="card flex-fill" style={{ maxWidth: "100%" }}>
-            <div className="card-body">
-              <h3 className="card-title">Category-wise Breakdown (Bar)</h3>
+            <div className="card-body-e">
+              <h3 className="card-title-e">Category-wise Breakdown (Bar)</h3>
               <Bar
                 data={{
                   labels: Object.keys(categoryData),
@@ -129,8 +130,10 @@ const ExpenditureAnalysis = () => {
           </div>
         </div>
       </div>
-
-      <div className="my-4">
+     
+      <div style={{ display: "flex" ,
+        gap:"1.5rem" }}>
+      <div className="my-4 card-ed card h-100">
         <h3 className="text-xl font-semibold">
           Monthly Expenses (January 2025)
         </h3>
@@ -154,7 +157,7 @@ const ExpenditureAnalysis = () => {
         </div>
       </div>
 
-      <div className="my-4">
+      <div className="my-4 card card-ed h-100">
         <h3 className="text-xl font-semibold">To-Do List: Bills</h3>
         {reminderTodos.length > 0 ? (
           <ul>
@@ -167,6 +170,7 @@ const ExpenditureAnalysis = () => {
         ) : (
           <p>No bills due at the moment.</p>
         )}
+      </div>
       </div>
     </div>
   );
